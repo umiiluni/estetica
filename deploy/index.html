@@ -80,6 +80,29 @@
     @media (max-width: 640px) {
       .grid-4-resp { grid-template-columns: 1fr !important; }
       .grid-6-resp { grid-template-columns: repeat(2, 1fr) !important; }
+
+      .nav-inner { padding: 0 20px !important; gap: 10px !important; }
+      .brand span:first-child { font-size: 14px !important; letter-spacing: 0.14em !important; }
+      .brand span:last-child { font-size: 9px !important; }
+      .nav-cta { padding: 9px 16px !important; font-size: 11px !important; }
+
+      .hero-content,
+      #destacados, #tratamientos, #nosotros, #faq, #blog,
+      footer {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+      }
+
+      .featured-card { padding: 24px !important; min-height: 400px !important; }
+      .faq-trigger { padding: 20px 22px !important; font-size: 16px !important; }
+      .faq-content { padding-left: 22px !important; padding-right: 22px !important; }
+      .team-photo { height: 320px !important; }
+      .footer-links-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 18px !important; }
+
+      .social-proof { flex-wrap: wrap; padding: 10px 16px !important; gap: 8px !important; max-width: 100%; }
+    }
+    @media (max-width: 380px) {
+      .brand span:last-child { display: none; }
     }
   </style>
 </helmet>
@@ -88,10 +111,10 @@
 
   <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
   <nav style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #F0EFEB;">
-    <div style="max-width: 1380px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; gap: 24px;">
+    <div class="nav-inner" style="max-width: 1380px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; gap: 24px;">
 
       <!-- Logo -->
-      <div style="flex-shrink: 0; display: flex; flex-direction: column; line-height: 1; gap: 3px;">
+      <div class="brand" style="flex-shrink: 0; display: flex; flex-direction: column; line-height: 1; gap: 3px;">
         <span style="font-size: 17px; font-weight: 700; letter-spacing: 0.25em; color: #2D2D2D;">EVOLUTION</span>
         <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; letter-spacing: 0.18em; color: #C0A080;">Potenciamos tu mejor versión</span>
       </div>
@@ -107,7 +130,7 @@
 
       <!-- Buttons -->
       <div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px;">
-        <button class="dark-btn" style="padding: 10px 22px;">Reservar turno</button>
+        <button class="dark-btn nav-cta" style="padding: 10px 22px;">Reservar turno</button>
       </div>
 
     </div>
@@ -115,7 +138,7 @@
 
   <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
   <section style="min-height: 88vh; display: flex; align-items: center; background: #F8F6F2; overflow: hidden;">
-    <div class="grid-2-resp" style="max-width: 1380px; margin: 0 auto; padding: 64px 40px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+    <div class="grid-2-resp hero-content" style="max-width: 1380px; margin: 0 auto; padding: 64px 40px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
 
       <!-- Left content -->
       <div style="display: flex; flex-direction: column; justify-content: center;">
@@ -143,7 +166,7 @@
         </div>
 
         <!-- Social proof -->
-        <div style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; background: #F8F6F2; border-radius: 9999px; width: fit-content;">
+        <div class="social-proof" style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; background: #F8F6F2; border-radius: 9999px; width: fit-content;">
           <div style="display: flex; align-items: center; gap: 3px;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
@@ -196,7 +219,7 @@
       <div class="grid-2-resp" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
 
         <!-- Left: Featured display card -->
-        <div style="{{ featuredBgStyle }}">
+        <div class="featured-card" style="{{ featuredBgStyle }}">
           <div style="position: absolute; top: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to bottom, rgba(0,0,0,0.28), transparent); border-radius: 24px 24px 0 0; pointer-events: none;"></div>
           <div style="position: absolute; top: 28px; left: 28px; background: rgba(192,160,128,0.2); backdrop-filter: blur(6px); border: 1px solid rgba(192,160,128,0.35); border-radius: 9999px; padding: 6px 16px;">
             <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: #E8D5B7; text-transform: uppercase;">{{ featured.label }}</span>
@@ -339,7 +362,7 @@
       </div>
 
       <!-- Team photo -->
-      <div style="border-radius: 24px; overflow: hidden; height: 540px; position: relative;">
+      <div class="team-photo" style="border-radius: 24px; overflow: hidden; height: 540px; position: relative;">
         <img src="uploads/ChatGPT Image 1 sept 2026, 07_50_00 p.m..png" alt="Equipo Evolution Medicina Estética" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;" />
         <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);"></div>
         <div style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; color: #C0A080; text-transform: uppercase;">Evolution · Medicina Estética</div>
@@ -366,7 +389,7 @@
                 <path d="m6 9 6 6 6-6"></path>
               </svg>
             </button>
-            <div style="{{ faq.contentStyle }}">{{ faq.a }}</div>
+            <div class="faq-content" style="{{ faq.contentStyle }}">{{ faq.a }}</div>
           </div>
         </sc-for>
       </div>
@@ -433,7 +456,7 @@
         </div>
 
         <!-- Right: link grid -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <div class="footer-links-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
 
           <div>
             <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px;">Tratamientos</div>
