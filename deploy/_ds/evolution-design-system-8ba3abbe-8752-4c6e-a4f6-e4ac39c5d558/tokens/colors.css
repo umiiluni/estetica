@@ -1,0 +1,45 @@
+:root {
+  /* Gold / Champagne Scale */
+  --color-gold-50: #FAF7EE;
+  --color-gold-100: #F2E5C0;
+  --color-gold-200: #E5CB84;
+  --color-gold-300: #D9B464;
+  --color-gold-400: #CCA04E;
+  --color-gold-500: #C4A35A;
+  --color-gold-600: #A8883C;
+  --color-gold-700: #8C6E24;
+  --color-gold-800: #6B5212;
+  --color-gold-900: #4A3808;
+
+  /* Neutral Scale */
+  --color-black: #0D0D0D;
+  --color-dark-900: #111111;
+  --color-dark-800: #1A1A1A;
+  --color-dark-700: #2A2A2A;
+  --color-dark-600: #3D3D3D;
+  --color-gray-500: #666666;
+  --color-gray-400: #999999;
+  --color-gray-300: #C9C9C5;
+  --color-gray-200: #E0E0DC;
+  --color-gray-100: #F0EFEB;
+  --color-cream: #FAF9F6;
+  --color-white: #FFFFFF;
+
+  /* Semantic Aliases */
+  --color-accent: var(--color-gold-500);
+  --color-accent-hover: var(--color-gold-600);
+  --color-accent-light: var(--color-gold-300);
+  --color-accent-subtle: var(--color-gold-50);
+  --color-surface-dark: var(--color-dark-900);
+  --color-surface-mid: var(--color-dark-800);
+  --color-surface-light: var(--color-cream);
+  --color-surface-card: var(--color-white);
+  --color-text-on-dark: var(--color-white);
+  --color-text-on-light: var(--color-dark-900);
+  --color-text-muted-dark: var(--color-gray-400);
+  --color-text-muted-light: var(--color-gray-500);
+  --color-text-accent: var(--color-gold-500);
+  --color-border-default: var(--color-gray-200);
+  --color-border-dark: var(--color-dark-600);
+  --color-border-gold: var(--color-gold-400);
+}

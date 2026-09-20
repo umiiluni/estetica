@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/evolution-design-system-8ba3abbe-8752-4c6e-a4f6-e4ac39c5d558/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/evolution-design-system-8ba3abbe-8752-4c6e-a4f6-e4ac39c5d558/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/evolution-design-system-8ba3abbe-8752-4c6e-a4f6-e4ac39c5d558/tokens/effects.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; overflow-x: hidden; }
+    body { font-family: 'Montserrat', sans-serif; background: #F8F6F2; color: #2D2D2D; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+
+    @keyframes marqueeDown { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+    @keyframes marqueeUp   { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+    @keyframes goldShimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+
+    .m-down { animation: marqueeDown 32s linear infinite; display: flex; flex-direction: column; gap: 12px; }
+    .m-up   { animation: marqueeUp   36s linear infinite; display: flex; flex-direction: column; gap: 12px; margin-top: -50px; }
+
+    .gold-btn-wrap { display: inline-flex; padding: 1.5px; background: linear-gradient(90deg,#C0A080,#E8D5B7,#C0A080); background-size: 200% 100%; border-radius: 9999px; cursor: pointer; transition: background-position 0.6s ease; }
+    .gold-btn-wrap:hover { background-position: 100% 0; animation: goldShimmer 1.8s linear infinite; }
+    .gold-btn-inner { background: #F8F6F2; border-radius: 9999px; display: flex; align-items: center; justify-content: center; gap: 7px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: #2D2D2D; border: none; cursor: pointer; white-space: nowrap; }
+
+    .dark-btn { background: #2D2D2D; color: #ffffff; border: none; border-radius: 9999px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.07em; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .dark-btn:hover { background: #111111; }
+
+    .gold-btn-solid { background: #C0A080; color: #ffffff; border: none; border-radius: 9999px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.07em; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+    .gold-btn-solid:hover { background: #A08060; }
+
+    .nav-link { font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: #5A5040; transition: color 0.2s; cursor: pointer; text-decoration: none; }
+    .nav-link:hover { color: #C0A080; }
+
+    .svc-card-img { transition: transform 0.45s ease; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .svc-card:hover .svc-card-img { transform: scale(1.05); }
+
+    .value-card { transition: transform 0.22s, box-shadow 0.22s; }
+    .value-card:hover { transform: translateY(-5px); box-shadow: 2px 12px 32px rgba(0,0,0,0.13) !important; }
+
+    .blog-card { transition: transform 0.22s, box-shadow 0.22s; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 2px 10px 28px rgba(0,0,0,0.12) !important; }
+
+    .faq-trigger { background: none; border: none; width: 100%; text-align: left; font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 600; color: #2D2D2D; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding: 28px 48px; transition: color 0.2s; gap: 16px; }
+    .faq-trigger:hover { color: #C0A080; }
+
+    .carousel-arrow { width: 40px; height: 40px; border-radius: 9999px; background: rgba(240,238,235,0.9); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; flex-shrink: 0; }
+    .carousel-arrow:hover { background: rgba(215,210,205,0.95); }
+
+    .footer-link { font-size: 13px; color: rgba(255,255,255,0.6); transition: color 0.2s; cursor: pointer; display: block; }
+    .footer-link:hover { color: #C0A080; }
+
+    .footer-input { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); border-right: none; border-radius: 9999px 0 0 9999px; padding: 12px 20px; font-family: 'Montserrat', sans-serif; font-size: 13px; color: #ffffff; outline: none; flex: 1; min-width: 0; }
+    .footer-input::placeholder { color: rgba(255,255,255,0.35); }
+    .footer-input:focus { border-color: rgba(192,160,128,0.5); }
+
+    .social-btn { width: 40px; height: 40px; border-radius: 9999px; background: rgba(255,255,255,0.08); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s, color 0.2s; color: rgba(255,255,255,0.55); }
+    .social-btn:hover { background: rgba(192,160,128,0.25); color: #C0A080; }
+
+    .info-pill { display: inline-flex; align-items: center; gap: 10px; background: #F8F6F2; border: 1px solid #EDE9E0; border-radius: 9999px; padding: 11px 20px; cursor: pointer; transition: background 0.2s; }
+    .info-pill:hover { background: #F2EDE4; }
+
+    .hero-fade-top    { position: absolute; top: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to bottom, #ffffff, transparent); z-index: 2; pointer-events: none; }
+    .hero-fade-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to top, #ffffff, transparent); z-index: 2; pointer-events: none; }
+
+    @media (max-width: 1024px) {
+      .hero-right  { display: none !important; }
+      .nav-center  { display: none !important; }
+      .grid-2-resp { grid-template-columns: 1fr !important; }
+      .grid-3-resp { grid-template-columns: 1fr !important; }
+      .grid-4-resp { grid-template-columns: repeat(2, 1fr) !important; }
+      .grid-6-resp { grid-template-columns: repeat(3, 1fr) !important; }
+      .footer-main-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 640px) {
+      .grid-4-resp { grid-template-columns: 1fr !important; }
+      .grid-6-resp { grid-template-columns: repeat(2, 1fr) !important; }
+    }
+  </style>
+</helmet>
+
+<div style="background: #F8F6F2; color: #2D2D2D; font-family: 'Montserrat', sans-serif;">
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <nav style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.96); backdrop-filter: blur(10px); border-bottom: 1px solid #F0EFEB;">
+    <div style="max-width: 1380px; margin: 0 auto; padding: 0 40px; height: 68px; display: flex; align-items: center; gap: 24px;">
+
+      <!-- Logo -->
+      <div style="flex-shrink: 0; display: flex; flex-direction: column; line-height: 1; gap: 3px;">
+        <span style="font-size: 17px; font-weight: 700; letter-spacing: 0.25em; color: #2D2D2D;">EVOLUTION</span>
+        <span style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; letter-spacing: 0.18em; color: #C0A080;">Potenciamos tu mejor versión</span>
+      </div>
+
+      <!-- Nav links -->
+      <div class="nav-center" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 28px;">
+        <a class="nav-link" href="#tratamientos">Tratamientos</a>
+        <a class="nav-link" href="#destacados">Destacados</a>
+        <a class="nav-link" href="#nosotros">Nosotras</a>
+        <a class="nav-link" href="#faq">FAQ</a>
+        <a class="nav-link" href="#blog">Blog</a>
+      </div>
+
+      <!-- Buttons -->
+      <div style="flex-shrink: 0; display: flex; align-items: center; gap: 10px;">
+        <button class="dark-btn" style="padding: 10px 22px;">Reservar turno</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+  <section style="min-height: 88vh; display: flex; align-items: center; background: #F8F6F2; overflow: hidden;">
+    <div class="grid-2-resp" style="max-width: 1380px; margin: 0 auto; padding: 64px 40px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <!-- Left content -->
+      <div style="display: flex; flex-direction: column; justify-content: center;">
+
+        <!-- Heading -->
+        <h1 style="font-size: clamp(38px, 4.5vw, 64px); font-weight: 700; line-height: 1.07; letter-spacing: -0.025em; color: #2D2D2D; margin: 0 0 28px; max-width: 520px;">
+          Tu mejor versión,<br/>en manos expertas.
+        </h1>
+
+        <!-- Subline -->
+        <p style="font-size: 15px; font-weight: 400; color: #888888; line-height: 1.7; margin: 0 0 48px; max-width: 400px;">
+          Cada rostro tiene su historia. Nosotros la realzamos con ciencia, precisión y cuidado genuino.
+        </p>
+
+        <!-- CTAs -->
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 52px; width: fit-content;">
+          <a href="https://wa.me/543549469411" target="_blank" style="display: inline-flex; align-items: center; gap: 9px; background: #C4A35A; color: #ffffff; border-radius: 9999px; padding: 15px 32px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.07em; text-decoration: none; transition: background 0.2s;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.554 4.11 1.522 5.836L.044 23.448a.5.5 0 0 0 .611.612l5.565-1.487A11.946 11.946 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 0 1-5.001-1.373l-.358-.213-3.303.883.882-3.228-.233-.373A9.79 9.79 0 0 1 2.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"></path></svg>
+            Agendar Consulta
+          </a>
+          <a href="#tratamientos" style="display: inline-flex; align-items: center; gap: 9px; background: transparent; color: #2D2D2D; border: 1.5px solid #2D2D2D; border-radius: 9999px; padding: 14px 32px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.07em; text-decoration: none; transition: border-color 0.2s, color 0.2s;">
+            Conoce los tratamientos
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+
+        <!-- Social proof -->
+        <div style="display: flex; align-items: center; gap: 14px; padding: 14px 20px; background: #F8F6F2; border-radius: 9999px; width: fit-content;">
+          <div style="display: flex; align-items: center; gap: 3px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#C0A080" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon></svg>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #2D2D2D;">4.8</span>
+          <span style="width: 1px; height: 14px; background: #D8D5D0; flex-shrink: 0;"></span>
+          <span style="font-size: 12px; font-weight: 500; color: #777777;">312 pacientes satisfechos</span>
+        </div>
+
+      </div>
+
+      <!-- Right: Marquee columns -->
+      <div class="hero-right" style="position: relative; height: 620px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; overflow: hidden; border-radius: 20px;">
+        <div class="hero-fade-top"></div>
+        <div class="hero-fade-bottom"></div>
+
+        <div style="overflow: hidden;">
+          <div class="m-down">
+            <sc-for list="{{ marqueeCol1 }}" as="mi" hint-placeholder-count="12">
+              <div style="{{ mi.imgStyle }}"></div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="overflow: hidden;">
+          <div class="m-up">
+            <sc-for list="{{ marqueeCol2 }}" as="mi" hint-placeholder-count="12">
+              <div style="{{ mi.imgStyle }}"></div>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FEATURED CAROUSEL ═══════════════════════════ -->
+  <section id="destacados" style="background: #F8F6F2; padding: 96px 40px;">
+    <div style="max-width: 1380px; margin: 0 auto;">
+
+      <div style="text-align: center; margin-bottom: 56px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #C0A080; text-transform: uppercase; margin-bottom: 16px;">TRATAMIENTOS DESTACADOS</div>
+        <h2 style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; letter-spacing: -0.01em; color: #2D2D2D; margin: 0;">Elige tu próximo paso.</h2>
+      </div>
+
+      <div class="grid-2-resp" style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;">
+
+        <!-- Left: Featured display card -->
+        <div style="{{ featuredBgStyle }}">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 180px; background: linear-gradient(to bottom, rgba(0,0,0,0.28), transparent); border-radius: 24px 24px 0 0; pointer-events: none;"></div>
+          <div style="position: absolute; top: 28px; left: 28px; background: rgba(192,160,128,0.2); backdrop-filter: blur(6px); border: 1px solid rgba(192,160,128,0.35); border-radius: 9999px; padding: 6px 16px;">
+            <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.15em; color: #E8D5B7; text-transform: uppercase;">{{ featured.label }}</span>
+          </div>
+          <div style="position: relative; z-index: 1;">
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: #C0A080; text-transform: uppercase; margin-bottom: 8px;">Precio desde</div>
+            <div style="font-size: 44px; font-weight: 700; color: #ffffff; letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px;">{{ featured.price }}</div>
+            <h3 style="font-size: 22px; font-weight: 600; color: rgba(255,255,255,0.92); margin: 0 0 8px; letter-spacing: -0.01em;">{{ featured.name }}</h3>
+            <p style="font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.65; margin: 0 0 28px; max-width: 320px;">{{ featured.short }}</p>
+            <button class="gold-btn-solid" style="padding: 13px 30px;" onClick="{{ reservarWsp }}">
+              Reservar este tratamiento
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Treatment selector -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <sc-for list="{{ treatments }}" as="treatment" hint-placeholder-count="4">
+              <div style="{{ treatment.cardStyle }}" onClick="{{ treatment.select }}">
+                <div style="position: relative; z-index: 1; background: rgba(0,0,0,0.28); backdrop-filter: blur(4px); border-radius: 10px; padding: 12px 14px;">
+                  <div style="font-size: 9px; font-weight: 700; letter-spacing: 0.14em; color: rgba(210,180,140,0.9); text-transform: uppercase; margin-bottom: 5px;">{{ treatment.label }}</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #ffffff; line-height: 1.3;">{{ treatment.name }}</div>
+                  <div style="font-size: 13px; font-weight: 700; color: #C0A080; margin-top: 5px;">{{ treatment.price }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+          <!-- Nav row -->
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <sc-for list="{{ dotIndices }}" as="dot" hint-placeholder-count="4">
+                <div style="{{ dot.dotStyle }}" onClick="{{ dot.select }}"></div>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="carousel-arrow" onClick="{{ prevCarousel }}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m15 18-6-6 6-6"></path>
+                </svg>
+              </button>
+              <button class="carousel-arrow" onClick="{{ nextCarousel }}">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2D2D2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ SERVICES ═══════════════════════════ -->
+  <section id="tratamientos" style="background: #F8F6F2; padding: 96px 40px;">
+    <div style="max-width: 1380px; margin: 0 auto;">
+
+      <div style="text-align: center; margin-bottom: 64px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #C0A080; text-transform: uppercase; margin-bottom: 16px;">NUESTROS TRATAMIENTOS</div>
+        <h2 style="font-size: clamp(28px, 3.2vw, 44px); font-weight: 700; letter-spacing: -0.01em; color: #2D2D2D; margin: 0; line-height: 1.2;">Procedimientos personalizados,<br/>resultados naturales.</h2>
+      </div>
+
+      <div class="grid-3-resp" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+        <sc-for list="{{ services }}" as="service" hint-placeholder-count="3">
+          <div class="svc-card" style="display: flex; flex-direction: column;">
+            <div style="{{ service.wrapStyle }}"></div>
+            <h3 style="font-size: 20px; font-weight: 700; color: #2D2D2D; margin: 0 0 10px; letter-spacing: -0.01em;">{{ service.name }}</h3>
+            <p style="font-size: 13px; color: #888888; line-height: 1.72; margin: 0 0 14px; flex: 1;">{{ service.desc }}</p>
+            <div style="font-size: 13px; font-weight: 700; color: #C0A080; margin-bottom: 18px; letter-spacing: 0.03em;">desde ${{ service.price }}</div>
+            <div class="gold-btn-wrap" style="width: 100%;">
+              <a href="{{ service.waLink }}" target="_blank" class="gold-btn-inner" style="padding: 12px 24px; width: 100%; display: block; text-align: center; text-decoration: none;">Más información</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ NOSOTROS ═══════════════════════════ -->
+  <section id="nosotros" style="background: #F8F6F2; padding: 96px 40px;">
+    <div class="grid-2-resp" style="max-width: 1380px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+
+      <div>
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #C0A080; text-transform: uppercase; margin-bottom: 20px;">NUESTRO EQUIPO</div>
+        <h2 style="font-size: clamp(28px, 3.5vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #2D2D2D; margin: 0 0 36px;">El equipo detrás<br/>de tu evolución.</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 22px; margin-bottom: 44px;">
+
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="width: 42px; height: 42px; border-radius: 9999px; background: #F8F6F2; border: 1px solid #EDEAE4; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C0A080" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><polyline points="16 11 18 13 22 9"></polyline>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: #2D2D2D; margin-bottom: 5px;">Especialistas certificadas</div>
+              <div style="font-size: 13px; color: #888888; line-height: 1.65;">Médicas y profesionales con años de formación y experiencia clínica comprobada.</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="width: 42px; height: 42px; border-radius: 9999px; background: #F8F6F2; border: 1px solid #EDEAE4; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C0A080" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: #2D2D2D; margin-bottom: 5px;">Trato personalizado</div>
+              <div style="font-size: 13px; color: #888888; line-height: 1.65;">Cada paciente recibe una atención única, cálida y completamente adaptada a sus objetivos.</div>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: flex-start; gap: 16px;">
+            <div style="width: 42px; height: 42px; border-radius: 9999px; background: #F8F6F2; border: 1px solid #EDEAE4; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C0A080" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"></polygon>
+              </svg>
+            </div>
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: #2D2D2D; margin-bottom: 5px;">Más de 3.000 pacientes</div>
+              <div style="font-size: 13px; color: #888888; line-height: 1.65;">Nuestra trayectoria habla por sí sola. Resultados naturales que evolucionan contigo.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+          <a href="https://wa.me/543549469411?text=Hola!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener" class="dark-btn" style="padding: 13px 28px; text-decoration: none; display: inline-block;">Reservar turno</a>
+          <div class="gold-btn-wrap">
+            <a href="#tratamientos" class="gold-btn-inner" style="padding: 12px 24px; text-decoration: none; display: inline-block;">Conocer más</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team photo -->
+      <div style="border-radius: 24px; overflow: hidden; height: 540px; position: relative;">
+        <img src="uploads/ChatGPT Image 1 sept 2026, 07_50_00 p.m..png" alt="Equipo Evolution Medicina Estética" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;" />
+        <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 90px; background: linear-gradient(to top, rgba(0,0,0,0.55), transparent);"></div>
+        <div style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: 600; letter-spacing: 0.28em; color: #C0A080; text-transform: uppercase;">Evolution · Medicina Estética</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FAQ ═══════════════════════════ -->
+  <section id="faq" style="background: #F8F6F2; padding: 0 40px 96px;">
+    <div style="max-width: 800px; margin: 0 auto;">
+
+      <div style="text-align: center; padding-top: 80px; margin-bottom: 52px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #C0A080; text-transform: uppercase; margin-bottom: 16px;">PREGUNTAS FRECUENTES</div>
+        <h2 style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; letter-spacing: -0.01em; color: #2D2D2D; margin: 0;">Todo lo que necesitás saber.</h2>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <sc-for list="{{ faqs }}" as="faq" hint-placeholder-count="5">
+          <div style="background: #F8F6F2; border-radius: 20px; box-shadow: 2px 4px 12px rgba(0,0,0,0.07); overflow: hidden;">
+            <button class="faq-trigger" onClick="{{ faq.toggle }}">
+              <span>{{ faq.q }}</span>
+              <svg style="{{ faq.chevronStyle }}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </button>
+            <div style="{{ faq.contentStyle }}">{{ faq.a }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ BLOG ═══════════════════════════ -->
+  <section id="blog" style="background: #F8F6F2; padding: 0 40px 96px;">
+    <div style="max-width: 1380px; margin: 0 auto;">
+
+      <div style="text-align: center; padding-top: 80px; margin-bottom: 56px;">
+        <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.3em; color: #C0A080; text-transform: uppercase; margin-bottom: 16px;">GUÍA Y BLOG</div>
+        <h2 style="font-size: clamp(26px, 3vw, 40px); font-weight: 700; letter-spacing: -0.01em; color: #2D2D2D; margin: 0 0 28px;">Tu guía hacia la mejor versión de vos.</h2>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 12px;">
+          <button class="dark-btn" style="padding: 12px 26px;">Ver todos los artículos</button>
+          <div class="gold-btn-wrap">
+            <button class="gold-btn-inner" style="padding: 11px 22px;">Suscribirte</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4-resp" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+        <sc-for list="{{ articles }}" as="article" hint-placeholder-count="4">
+          <div class="blog-card" style="background: #F8F6F2; border-radius: 20px; overflow: hidden; box-shadow: 2px 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column;">
+            <div style="{{ article.imgStyle }}">
+              <span style="font-family: 'Cormorant Garamond', serif; font-size: 32px; color: rgba(140,100,40,0.16);">✦</span>
+            </div>
+            <div style="padding: 20px; display: flex; flex-direction: column; flex: 1; gap: 14px;">
+              <p style="font-size: 13px; font-weight: 600; color: #2D2D2D; line-height: 1.55; margin: 0; flex: 1;">{{ article.title }}</p>
+              <div style="display: inline-flex; align-items: center; gap: 6px; border: 1.5px solid rgba(45,45,45,0.13); border-radius: 9999px; padding: 6px 14px; width: fit-content; cursor: pointer;">
+                <span style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #2D2D2D; text-transform: uppercase;">{{ article.cat }}</span>
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C0A080" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer style="background: #2D2D2D; color: #ffffff; padding: 72px 40px 0;">
+    <div style="max-width: 1380px; margin: 0 auto;">
+
+      <div class="footer-main-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-bottom: 56px; align-items: start;">
+
+        <!-- Left -->
+        <div>
+          <div style="margin-bottom: 24px;">
+            <div style="font-size: 18px; font-weight: 700; letter-spacing: 0.25em; color: #ffffff; margin-bottom: 5px;">EVOLUTION</div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 11px; letter-spacing: 0.18em; color: #C0A080;">Potenciamos tu mejor versión</div>
+          </div>
+          <p style="font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.72; max-width: 380px; margin: 0 0 32px;">Medicina estética de precisión. Resultados naturales que evolucionan con vos. Agenda tu consulta gratuita hoy.</p>
+
+          <div style="display: flex; margin-bottom: 14px;">
+            <input class="footer-input" type="email" placeholder="Tu dirección de email..."/>
+            <button class="gold-btn-solid" style="padding: 12px 22px; border-radius: 0 9999px 9999px 0; flex-shrink: 0;">Suscribirse</button>
+          </div>
+          <p style="font-size: 11px; color: rgba(255,255,255,0.3); margin: 0; letter-spacing: 0.02em;">Tu privacidad es nuestra prioridad. Sin spam, nunca.</p>
+        </div>
+
+        <!-- Right: link grid -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;">
+
+          <div>
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px;">Tratamientos</div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <a class="footer-link">Rejuvenecimiento</a>
+              <a class="footer-link">Contorno Facial</a>
+              <a class="footer-link">Corporales</a>
+              <a class="footer-link">Preventivo</a>
+              <a class="footer-link">Bioestimulación</a>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px;">Clínica</div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <a class="footer-link">Nosotros</a>
+              <a class="footer-link">Equipo médico</a>
+              <a class="footer-link">Tecnología</a>
+              <a class="footer-link">Blog y Guía</a>
+              <a class="footer-link">Contacto</a>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: rgba(255,255,255,0.35); text-transform: uppercase; margin-bottom: 18px;">Legal</div>
+            <div style="display: flex; flex-direction: column; gap: 11px;">
+              <a class="footer-link">Términos de uso</a>
+              <a class="footer-link">Privacidad</a>
+              <a class="footer-link">Cookies</a>
+              <a class="footer-link">Habeas Data</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <div style="height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 28px;"></div>
+
+      <!-- Social + certs -->
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-bottom: 28px;">
+        <div style="display: flex; gap: 8px;">
+          <a class="social-btn" href="https://instagram.com/evolution" target="_blank" rel="noopener" aria-label="Instagram" style="color: inherit; text-decoration: none;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+          </a>
+          <a class="social-btn" href="https://facebook.com/evolution" target="_blank" rel="noopener" aria-label="Facebook" style="color: inherit; text-decoration: none;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </a>
+          <a class="social-btn" href="https://wa.me/543549469411" target="_blank" rel="noopener" aria-label="WhatsApp" style="color: inherit; text-decoration: none;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+            </svg>
+          </a>
+          <a class="social-btn" href="https://linkedin.com/company/evolution" target="_blank" rel="noopener" aria-label="LinkedIn" style="color: inherit; text-decoration: none;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <a href="https://smacme.org.ar" target="_blank" rel="noopener" style="border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 5px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; color: rgba(255,255,255,0.4); text-transform: uppercase; text-decoration: none; cursor: pointer;">SMACME</a>
+          <a href="https://www.isaps.org" target="_blank" rel="noopener" style="border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 5px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; color: rgba(255,255,255,0.4); text-transform: uppercase; text-decoration: none; cursor: pointer;">ISAPS</a>
+          <a href="#nosotros" style="border: 1px solid rgba(192,160,128,0.3); border-radius: 9999px; padding: 5px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.14em; color: rgba(192,160,128,0.6); text-transform: uppercase; text-decoration: none; cursor: pointer;">Certificado</a>
+        </div>
+      </div>
+
+      <!-- Disclaimer -->
+      <div style="border-top: 1px solid rgba(255,255,255,0.06); padding: 20px 0;">
+        <p style="font-size: 10px; color: rgba(255,255,255,0.25); line-height: 1.6; margin: 0; text-align: center;">Los resultados pueden variar. Los tratamientos de medicina estética deben ser realizados por profesionales médicos habilitados. Evolution no realiza diagnósticos por medios digitales. La información de este sitio es de carácter informativo y no reemplaza la consulta médica profesional. © 2026 Evolution. Todos los derechos reservados.</p>
+      </div>
+
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { faqOpen: null, carouselIdx: 0 };
+
+  renderVals() {
+    const { faqOpen, carouselIdx } = this.state;
+    const GOLD = '#C0A080';
+
+    /* ── Data ── */
+    const treatmentsData = [
+      { name: 'Bioestimulación Facial',   price: '$25.000', label: 'Tratamiento estrella',   short: 'Estimula colágeno y elastina para una piel más firme, luminosa y rejuvenecida.', img: 'uploads/Инъекции для омоложения лица_ Injections for facial rejuvenation_.jfif' },
+      { name: 'Radiofrecuencia Corporal', price: '$20.000', label: 'Más solicitado',          short: 'Redefine y tensa la piel corporal con tecnología de ondas de radiofrecuencia.',  img: 'uploads/descarga (6).jfif' },
+      { name: 'Toxina Botulínica',        price: '$18.000', label: 'Preventivo & corrector', short: 'Prevención y suavizado de líneas de expresión con resultados completamente naturales.', img: 'uploads/Toxilina Botulínica.jfif' },
+      { name: 'Ácido Hialurónico',        price: '$22.000', label: 'Favorito del mes',       short: 'Volumen, hidratación y redefinición de contornos faciales con total naturalidad.',  img: 'uploads/descarga (5)-1bc153dd.jfif' },
+    ];
+
+    const faqData = [
+      { q: '¿Qué es la medicina estética?',     a: 'La medicina estética es una especialidad médica que combina ciencia y arte para mejorar la apariencia física de manera segura, natural y no invasiva, utilizando tecnologías y técnicas de última generación.' },
+      { q: '¿Los resultados son naturales?',     a: 'Sí. Nuestro enfoque prioriza resultados armoniosos que realzan tu belleza natural. Trabajamos con protocolos personalizados para que los cambios sean sutiles, elegantes y completamente naturales.' },
+      { q: '¿Cuántas sesiones necesito?',        a: 'Depende del tratamiento y tus objetivos específicos. En la consulta inicial, nuestro equipo médico diseña un plan personalizado con el número de sesiones recomendadas y los resultados esperados.' },
+      { q: '¿Tienen financiación?',              a: 'Sí, contamos con planes de financiación flexibles para que puedas acceder a los tratamientos sin preocuparte por el costo inicial. Consultá las opciones disponibles durante tu visita.' },
+      { q: '¿Qué incluye la consulta inicial?', a: 'La consulta inicial es completamente gratuita e incluye una evaluación médica personalizada, diagnóstico de tu piel y objetivos estéticos, y el diseño de un plan de tratamiento a medida. Sin compromiso.' },
+    ];
+
+    const serviceData = [
+      { name: 'Rejuvenecimiento Facial',  desc: 'Tratamientos avanzados que restauran la vitalidad y luminosidad natural de tu piel, con resultados visibles desde la primera sesión.', price: '15.000', img: 'uploads/descarga (4).jfif' },
+      { name: 'Contorno y Definición',    desc: 'Moldea y define los contornos del rostro con técnicas de última generación. Resultados naturales y armoniosos, pensados para vos.',    price: '12.000', img: 'uploads/Sculptra_ Antes e depois - Antes da Fama-8fd5dc2b.jfif' },
+      { name: 'Tratamientos Corporales',  desc: 'Protocolos integrales para redefinir y tonificar tu cuerpo. Tecnología avanzada combinada con medicina de precisión personalizada.',   price: '18.000', img: 'uploads/DRENAJE LINFÁTICO-d65df815.jfif' },
+    ];
+
+    const articleData = [
+      { title: 'Hidratación profunda: qué es y por qué la necesitás',                    cat: 'Skincare',    img: 'uploads/6be120d63f13a2da8a61987f029d7437.jpg' },
+      { title: 'Ácido hialurónico: mitos y verdades que debés conocer',                  cat: 'Tratamientos', img: 'uploads/c90ab17c6a5feaf2a7a94904c98618e0.jpg' },
+      { title: 'Toxina botulínica: todo lo que querés saber antes de comenzar',           cat: 'Preventivo',   img: 'uploads/3e4e4b5dc900c67ff8ee6075b848515f.jpg' },
+      { title: 'Cómo prepararse para tu primera consulta de medicina estética',           cat: 'Guía',         img: 'uploads/images.jfif' },
+    ];
+
+    const imgs = [
+      "uploads/Ideas%20para%20marketing%20m%C3%A9dico.jfif",
+      "uploads/Med%20Spa%20Raleigh%2C%20Cary%2C%20Chapel%20Hill%20%26%20Clayton%20_%20BodyLase.jfif",
+      "uploads/descarga%20(4)-cbe2486b.jfif",
+      "uploads/descarga%20(5).jfif",
+      "uploads/descarga%20(7).jfif",
+      "uploads/fillers.jfif",
+    ];
+    const col1Raw = [
+      { h: 240, img: imgs[0] },
+      { h: 185, img: imgs[1] },
+      { h: 260, img: imgs[2] },
+      { h: 200, img: imgs[3] },
+      { h: 220, img: imgs[4] },
+      { h: 175, img: imgs[5] },
+    ];
+    const col2Raw = [
+      { h: 205, img: imgs[3] },
+      { h: 255, img: imgs[4] },
+      { h: 175, img: imgs[5] },
+      { h: 230, img: imgs[0] },
+      { h: 195, img: imgs[1] },
+      { h: 250, img: imgs[2] },
+    ];
+
+    /* ── Computed ── */
+    const carouselMax = treatmentsData.length - 1;
+    const featured    = treatmentsData[carouselIdx];
+
+    const PHONE = '5491100000000'; // ← reemplaza con el número real (código país + número, sin +)
+    const reservarWsp = () => {
+      const msg = encodeURIComponent(`Hola! Quisiera reservar el tratamiento: ${featured.name}`);
+      window.open(`https://wa.me/${PHONE}?text=${msg}`, '_blank');
+    };
+
+    const featuredBgStyle = {
+      backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.1) 100%), url("${featured.img}")`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      borderRadius: '24px',
+      overflow: 'hidden',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      padding: '40px',
+      minHeight: '500px',
+    };
+
+    const treatments = treatmentsData.map((t, i) => ({
+      ...t,
+      select: () => this.setState({ carouselIdx: i }),
+      cardStyle: {
+        backgroundImage: `linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.15) 60%), url("${t.img}")`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        borderRadius: '14px',
+        padding: '16px',
+        cursor: 'pointer',
+        aspectRatio: '4/3',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        position: 'relative',
+        overflow: 'hidden',
+        boxShadow: i === carouselIdx
+          ? `0 0 0 2px ${GOLD}, 0 8px 24px rgba(192,160,128,0.28)`
+          : '0 2px 10px rgba(0,0,0,0.1)',
+        transition: 'box-shadow 0.3s ease, transform 0.2s ease',
+        transform: i === carouselIdx ? 'translateY(-2px)' : 'translateY(0)',
+      },
+    }));
+
+    const dotIndices = treatmentsData.map((_, i) => ({
+      isActive: i === carouselIdx,
+      select: () => this.setState({ carouselIdx: i }),
+      dotStyle: {
+        width: i === carouselIdx ? '22px' : '7px',
+        height: '7px',
+        borderRadius: '9999px',
+        background: i === carouselIdx ? GOLD : '#CCCCCC',
+        transition: 'all 0.3s ease',
+        cursor: 'pointer',
+        flexShrink: 0,
+      },
+    }));
+
+    const faqs = faqData.map((item, i) => ({
+      ...item,
+      toggle: () => this.setState(s => ({ faqOpen: s.faqOpen === i ? null : i })),
+      contentStyle: {
+        maxHeight: faqOpen === i ? '220px' : '0',
+        overflow: 'hidden',
+        transition: 'max-height 0.38s ease, padding 0.3s ease',
+        paddingLeft: '48px',
+        paddingRight: '48px',
+        paddingBottom: faqOpen === i ? '28px' : '0',
+        fontSize: '14px',
+        lineHeight: '1.75',
+        color: '#777777',
+      },
+      chevronStyle: {
+        transform: faqOpen === i ? 'rotate(180deg)' : 'rotate(0deg)',
+        transition: 'transform 0.32s ease',
+        color: faqOpen === i ? GOLD : '#BBBBBB',
+        flexShrink: 0,
+        display: 'block',
+      },
+    }));
+
+    const services = serviceData.map(s => ({
+      ...s,
+      waLink: `https://wa.me/543549469411?text=${encodeURIComponent('Hola! Me interesa saber más información sobre el tratamiento de ' + s.name)}`,
+      wrapStyle: {
+        backgroundImage: `url('${s.img}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        aspectRatio: '1/1',
+        borderRadius: '16px',
+        overflow: 'hidden',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: '22px',
+      },
+    }));
+
+    const articles = articleData.map(a => ({
+      ...a,
+      imgStyle: {
+        backgroundImage: `url('${a.img}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '192px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+      },
+    }));
+
+    const toImgStyle = ({ h, img }) => ({
+      imgStyle: { height: `${h}px`, backgroundImage: `url('${img}')`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '12px', flexShrink: 0, width: '100%' },
+    });
+    const marqueeCol1 = [...col1Raw, ...col1Raw].map(toImgStyle);
+    const marqueeCol2 = [...col2Raw, ...col2Raw].map(toImgStyle);
+
+    return {
+      faqs, treatments, services, articles, marqueeCol1, marqueeCol2,
+      featured, featuredBgStyle, dotIndices,
+      prevCarousel: () => this.setState(s => ({ carouselIdx: s.carouselIdx === 0 ? carouselMax : s.carouselIdx - 1 })),
+      nextCarousel: () => this.setState(s => ({ carouselIdx: s.carouselIdx >= carouselMax ? 0 : s.carouselIdx + 1 })),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+:root {
+  /* Border Radii */
+  --radius-none: 0px;
+  --radius-sm:   2px;
+  --radius-md:   4px;
+  --radius-pill: 9999px;
+
+  /* Borders */
+  --border-thin:   1px solid; /* @kind other */
+  --border-medium: 2px solid; /* @kind other */
+
+  /* Shadows */
+  --shadow-none: none;
+  --shadow-sm:   0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md:   0 4px 24px rgba(0, 0, 0, 0.10);
+  --shadow-lg:   0 8px 48px rgba(0, 0, 0, 0.14);
+  --shadow-gold: 0 4px 24px rgba(196, 163, 90, 0.22);
+  --shadow-gold-lg: 0 8px 48px rgba(196, 163, 90, 0.30);
+
+  /* Transitions */
+  --transition-fast:   150ms ease; /* @kind other */
+  --transition-normal: 300ms ease; /* @kind other */
+  --transition-slow:   500ms ease; /* @kind other */
+  --transition-btn:    all 300ms ease; /* @kind other */
+
+  /* Overlays */
+  --overlay-dark-light: rgba(17, 17, 17, 0.30);
+  --overlay-dark-mid:   rgba(17, 17, 17, 0.60);
+  --overlay-dark-heavy: rgba(17, 17, 17, 0.80);
+
+  /* Z-index */
+  --z-base:    0; /* @kind other */
+  --z-above:   10; /* @kind other */
+  --z-modal:   100; /* @kind other */
+  --z-nav:     200; /* @kind other */
+  --z-tooltip: 300; /* @kind other */
+}
